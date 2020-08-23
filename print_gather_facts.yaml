@@ -1,0 +1,28 @@
+- hosts: ec2
+  become: yes
+  tasks:
+  - name: Distribution release
+    debug:
+      msg: "{{ ansible_distribution }}"
+
+  - name: hostname
+    debug: 
+      msg: "{{ ansible_hostname }}"
+
+  - name: nodename
+    debug:
+      msg: "{{ ansible_nodename }}"
+
+  - name: Remove file(delete file)
+    file:
+      path: /tmp/specs.report
+      state: touch
+
+  - name: Create server report in tmp directory
+    blockinfile:
+      path: /tmp/specs.report
+      block: |
+           "{{ ansible_distribution }}"
+           "{{ ansible_hostname }}"
+           "{{ ansible_nodename }}"
+

@@ -1,0 +1,15 @@
+- name: Adding users
+  hosts: ec2
+  become: yes
+  vars_files:
+  - vars/users.yaml
+  
+  tasks:
+  - name: Adding users
+    user:
+      name: "{{ user_name }}"
+      comment: "{{ full_name }}"
+      uid: "{{ user_id }}"
+      #     group: "{{ group_id }}"
+   
+
