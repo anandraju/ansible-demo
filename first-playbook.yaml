@@ -1,0 +1,19 @@
+- name: Play for file management 
+  hosts: ec2
+  tasks:
+  - name: Copied file1
+    copy: 
+      content: "Hello here"
+      dest: /tmp/hello.txt
+  - name: Copied file2
+    copy:
+      content: "Hello 2"
+      dest: /tmp/hello2.txt
+  - name: Archive is created
+    archive:
+      path:
+      - /tmp/hello.txt
+      - /tmp/hello2.txt
+      dest: /tmp/file.tar
+      format: zip 
+

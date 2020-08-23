@@ -1,0 +1,1 @@
+ec2 ansible_host=52.15.95.25 ansible_private_key_file=mykey ansible_ssh_user=ec2-user

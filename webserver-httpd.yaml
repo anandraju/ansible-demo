@@ -1,0 +1,21 @@
+- name: Install web server 
+  hosts: ec2
+  become: yes
+  tasks:
+  - name: Webserver is isntalled
+    package: 
+      name: httpd
+      state: present
+  - name: Webserver is up
+    service:
+      name: httpd
+      state: started
+  - name: webserver root directory exists
+    file:
+      path: /var/www/html
+      state: directory
+  - name: static website is deployed
+    uri:
+      url: https://raw.githubusercontent.com/abdennour/example-static-website/master/index.html
+      dest: /var/www/html
+  
